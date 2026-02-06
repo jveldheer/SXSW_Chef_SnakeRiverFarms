@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake River Farms × SXSW 2026 | Product Partnership</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --bg-card: #F5F5F5;
+            --bg-elevated: #EBEBEB;
+            --text-primary: #0D0D0D;
+            --text-secondary: #333333;
+            --text-muted: #555555;
+            --accent: #C41E3A;
+            --border-color: #D0D0D0;
+            --gutter: 1.5rem;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-color) !important;
+            color: var(--text-primary) !important;
+            font-family: 'Space Mono', monospace;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary) !important;
+        }
+
+        .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; }
+        .mono-bold { font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        
+        a { color: var(--text-primary); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--accent); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 var(--gutter); }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes countPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* ── Header ── */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .logo { 
+            font-size: 0.9rem; 
+            letter-spacing: 1px; 
+            font-weight: 700;
+            color: var(--text-primary) !important;
+            white-space: nowrap;
+        }
+        .logo span { color: var(--accent) !important; }
+        
+        .cta-btn {
+            background: var(--accent);
+            color: #FFFFFF !important;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+        }
+        .cta-btn:hover { 
+            background: var(--text-primary); 
+            color: #FFFFFF !important; 
+            transform: translateY(-1px);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 4rem 0 3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-meta-item {
+            font-size: 0.65rem;
+            color: var(--text-muted) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fadeUp 0.7s ease-out both;
+        }
+        .hero-meta-item:nth-child(1) { animation-delay: 0.2s; }
+        .hero-meta-item:nth-child(2) { animation-delay: 0.35s; }
+        .hero-meta-item:nth-child(3) { animation-delay: 0.5s; }
+        .hero-meta-item:nth-child(4) { animation-delay: 0.65s; }
+
+        .hero-meta-item span {
+            display: block;
+            color: var(--text-primary) !important;
+            font-size: 0.85rem;
+            margin-top: 0.35rem;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--text-primary) !important;
+            animation: fadeUp 0.8s ease-out 0.4s both;
+        }
+        
+        .hero-tagline {
+            font-size: 0.8rem;
+            color: var(--text-secondary) !important;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            animation: fadeUp 0.8s ease-out 0.55s both;
+        }
+
+        .hero-desc {
+            color: var(--text-secondary) !important;
+            font-size: 0.95rem;
+            max-width: 650px;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease-out 0.7s both;
+        }
+
+        .hero-quote {
+            font-size: 1.1rem;
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent);
+            padding-left: 1.25rem;
+            margin: 2rem 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            opacity: 0;
+            transform: translateX(-40px);
+            animation: slideInLeft 0.9s ease-out 0.9s forwards;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ── Stats ── */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            color: var(--accent) !important;
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-number.animate {
+            animation: countPulse 0.6s ease-out;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary) !important;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── Section Titles ── */
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary) !important;
+        }
+
+        /* ── Chef Grid ── */
+        .chef-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+
+        .chef-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            transition: border-color 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .chef-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .chef-name {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary) !important;
+        }
+
+        .chef-tag {
+            display: block;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent) !important;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .chef-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .chef-socials {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            align-items: center;
+        }
+
+        .chef-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: var(--border-color);
+            transition: background 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .chef-socials a:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .chef-socials a svg {
+            width: 13px;
+            height: 13px;
+            fill: var(--text-muted);
+            transition: fill 0.2s;
+        }
+
+        .chef-socials a:hover svg {
+            fill: #fff;
+        }
+
+        /* ── Visual Break ── */
+        .visual-break {
+            background: var(--text-primary);
+            padding: 3rem var(--gutter);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-break::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(196,30,58,0.08) 0%, transparent 50%, rgba(196,30,58,0.05) 100%);
+            pointer-events: none;
+        }
+
+        .visual-break h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #FFFFFF !important;
+            position: relative;
+        }
+
+        .visual-break p {
+            color: #CCCCCC !important;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        /* ── Cards Grid ── */
+        .grid-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.75rem;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+        
+        .card-number { 
+            color: var(--accent) !important; 
+            font-size: 0.7rem; 
+            margin-bottom: 0.75rem; 
+            display: block;
+            letter-spacing: 2px;
+        }
+        .card h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 0.75rem;
+            color: var(--text-primary) !important;
+        }
+        .card p { 
+            color: var(--text-secondary) !important; 
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* ── Tier Cards ── */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .tier-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            transition: border-color 0.3s, transform 0.4s, box-shadow 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+
+        .tier-card.featured {
+            background: #FFF5F5;
+            border: 2px solid var(--accent);
+        }
+
+        .tier-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #E85D75, var(--accent));
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .tier-label {
+            font-size: 0.65rem;
+            color: var(--accent) !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .tier-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary) !important;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .tier-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary) !important;
+        }
+
+        .tier-card > p {
+            color: var(--text-secondary) !important;
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+            font-style: italic;
+        }
+
+        .tier-subsection { margin-bottom: 1.5rem; }
+
+        .tier-subsection-title {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent) !important;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tier-card ul { list-style: none; }
+
+        .tier-card ul li {
+            padding: 0.5rem 0;
+            color: var(--text-primary) !important;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .tier-card ul li::before {
+            content: "✓";
+            color: var(--accent) !important;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .tier-card ul li.sub-item {
+            padding-left: 1.5rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary) !important;
+        }
+
+        .tier-card ul li.sub-item::before {
+            content: "→";
+        }
+
+        /* ── Eyeball Meter ── */
+        .eyeball-meter {
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .meter-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted) !important;
+            margin-bottom: 0.5rem;
+        }
+
+        .meter-bar-track {
+            height: 6px;
+            background: var(--bg-elevated);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .meter-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #E85D75);
+            border-radius: 3px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .meter-bar-fill.animate { width: var(--fill); }
+
+        .meter-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meter-stat {
+            font-size: 0.7rem;
+            color: var(--text-secondary) !important;
+        }
+        .meter-stat strong { color: var(--text-primary) !important; }
+
+        /* ── Best For Badge ── */
+        .best-for {
+            margin-top: 1.25rem;
+            padding: 1rem 1.25rem;
+            background: var(--text-primary);
+            color: #FFFFFF !important;
+            font-size: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .best-for-label {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent) !important;
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        /* ── Comparison Table ── */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .compare-table th {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 1rem;
+            border-bottom: 2px solid var(--text-primary);
+            text-align: left;
+            color: var(--text-primary) !important;
+        }
+
+        .compare-table th:not(:first-child) { text-align: center; }
+
+        .compare-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary) !important;
+        }
+
+        .compare-table td:not(:first-child) {
+            text-align: center;
+            color: var(--text-primary) !important;
+            font-weight: 700;
+        }
+
+        .compare-table tr:hover td { background: var(--bg-card); }
+        .compare-table .highlight-col { background: #FFF5F5; }
+
+        /* ── Highlight Box ── */
+        .highlight-box {
+            background: #FFF5F5;
+            border: 2px solid var(--accent);
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--accent) !important;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-primary) !important;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-label {
+            color: var(--accent) !important;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-cta {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
+            display: block;
+            color: var(--text-primary) !important;
+            transition: color 0.3s;
+        }
+        .footer-cta:hover { color: var(--accent) !important; }
+
+        .contact-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item {
+            color: var(--text-primary) !important;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .contact-item:hover { color: var(--accent) !important; }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: var(--text-muted) !important;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        /* ── Desktop ── */
+        @media (min-width: 640px) {
+            .stat-row { grid-template-columns: repeat(4, 1fr); }
+            .grid-section { grid-template-columns: repeat(2, 1fr); }
+            .chef-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 0.75rem;
+            }
+            .chef-card {
+                flex-direction: row;
+                align-items: center;
+                padding: 1rem 1.25rem;
+            }
+            .chef-info {
+                flex: 1;
+                min-width: 0;
+            }
+            .chef-tag {
+                margin-top: 0.2rem;
+            }
+            .tier-grid { grid-template-columns: repeat(2, 1fr); align-items: start; }
+            .footer-bottom { flex-direction: row; justify-content: space-between; }
+            .contact-block { flex-direction: row; justify-content: center; gap: 2rem; }
+        }
+
+        @media (min-width: 768px) {
+            :root { --gutter: 2rem; }
+            .section { padding: 5rem 0; }
+            .hero { padding: 5rem 0 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo mono-bold">SRF <span>×</span> SXSW</div>
+            <nav>
+                <a href="#contact" class="cta-btn">Let's Partner</a>
+            </nav>
+        </header>
+
+        <!-- ── Hero ── -->
+        <section class="hero">
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    PRESENTED BY<span>SXSW Chef</span>
+                </div>
+                <div class="hero-meta-item">
+                    LOCATION<span>Austin, TX</span>
+                </div>
+                <div class="hero-meta-item">
+                    DATES<span>March 12–15, 2026</span>
+                </div>
+                <div class="hero-meta-item">
+                    PROPOSAL FOR<span>Snake River Farms</span>
+                </div>
+            </div>
+            
+            <h1>The Best Proteins at the <span class="serif-italic" style="color:#C41E3A !important;">Biggest</span> Week in Culture</h1>
+            <p class="hero-tagline mono-bold">/ SNAKE RIVER FARMS × NEXT LEVEL CHEF × SXSW 2026</p>
+            <p class="hero-desc">Fifteen chefs from Gordon Ramsay's Next Level Chef are taking over Austin for SXSW—cooking for 200+ guests across two flagship events. This is an invitation for Snake River Farms to be the protein at the center of the plate.</p>
+            
+            <div class="hero-quote">
+                "When world-class chefs cook for a room full of taste-makers, the product matters. Snake River Farms is the product that earns that moment."
+            </div>
+        </section>
+
+        <!-- ── Why This Works ── -->
+        <section class="section">
+            <h2 class="section-title reveal" style="margin-bottom: 2rem;">Why Snake River Farms <span class="serif-italic" style="color:#C41E3A !important;">Wins</span> Here</h2>
+            
+            <div class="grid-section">
+                <div class="card reveal stagger-1">
+                    <span class="card-number mono-bold">01</span>
+                    <h3>Premium Product, Premium Stage</h3>
+                    <p>SXSW draws tastemakers, media, and cultural influencers. SRF protein becomes the centerpiece of an elevated culinary experience they'll talk about for months.</p>
+                </div>
+                <div class="card reveal stagger-2">
+                    <span class="card-number mono-bold">02</span>
+                    <h3>Chef-Validated Credibility</h3>
+                    <p>Multiple Next Level Chef contestants cooking with Snake River Farms creates organic, chef-endorsed exposure that money can't normally buy.</p>
+                </div>
+                <div class="card reveal stagger-3">
+                    <span class="card-number mono-bold">03</span>
+                    <h3>Content That Travels</h3>
+                    <p>Close-up plating shots, guest reactions, chefs working with SRF product—content built to perform on social and available for brand reuse.</p>
+                </div>
+                <div class="card reveal stagger-4">
+                    <span class="card-number mono-bold">04</span>
+                    <h3>Authentic Integration</h3>
+                    <p>No banners. No forced reads. The product speaks through the food—guests taste the quality and chefs vouch for it in the room.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Chef Roster ── -->
+        <section class="section">
+            <h2 class="section-title reveal" style="text-align: center; margin-bottom: 0.5rem;">The <span class="serif-italic" style="color:#C41E3A !important;">Chefs</span> in the Room</h2>
+            <p class="reveal stagger-1" style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2.5rem; letter-spacing: 1px;">15 CONTESTANTS FROM GORDON RAMSAY'S NEXT LEVEL CHEF — SEASON 5 ON FOX</p>
+
+            <div class="chef-grid">
+                <div class="chef-card reveal stagger-1">
+                    <div class="chef-info"><span class="chef-name">Tim Laielli</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/barefoodtim" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@barefoodtim" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-1">
+                    <div class="chef-info"><span class="chef-name">Landon Bridges</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/imlandn" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@imlandn" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-1">
+                    <div class="chef-info">
+                        <span class="chef-name">Jared Veldheer</span>
+                        <span class="chef-tag">12-Year NFL Veteran</span>
+                    </div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/jaredv68" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@jveldheer" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-2">
+                    <div class="chef-info"><span class="chef-name">Connor Caine</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/connor_caine" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@connor_caine" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-2">
+                    <div class="chef-info"><span class="chef-name">Christian Alquiza</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/illsqueezeya" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@illsqueezeya" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-2">
+                    <div class="chef-info"><span class="chef-name">Trinidad "Machete" Gonzalez</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/realchefmachete" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@realchefmachete" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-3">
+                    <div class="chef-info"><span class="chef-name">Elise Jesse</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/ejscookin" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@ejscookin" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-3">
+                    <div class="chef-info"><span class="chef-name">Nicole "Cole" Lawson</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/chefcolelawson" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@chefcolelawson" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-3">
+                    <div class="chef-info"><span class="chef-name">Gabrielle Coniglio</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/chefgabrelle" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-4">
+                    <div class="chef-info"><span class="chef-name">Kevin Hill</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/flynerd" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@chef_kevinhill" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-4">
+                    <div class="chef-info"><span class="chef-name">Belinda Vu</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/eatsbybeela" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-4">
+                    <div class="chef-info"><span class="chef-name">Amber Nichole Kellehan</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/amberkellehan" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@amberkellehan" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-5">
+                    <div class="chef-info"><span class="chef-name">Earl Middleton</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/chefearlofficial" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-5">
+                    <div class="chef-info"><span class="chef-name">Andy Allo</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/andyallo" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    </div>
+                </div>
+                <div class="chef-card reveal stagger-5">
+                    <div class="chef-info"><span class="chef-name">Matt Starcher</span></div>
+                    <div class="chef-socials">
+                        <a href="https://instagram.com/themattdad" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                        <a href="https://tiktok.com/@themattdad" target="_blank" title="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.43v-7.15a8.16 8.16 0 005.58 2.2v-3.4a4.85 4.85 0 01-1-.19z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Visual Break ── -->
+        <div class="visual-break">
+            <h2 class="reveal">Two <span class="serif-italic" style="color:#FFFFFF !important;">Options</span>, One Standard</h2>
+            <p class="mono-bold reveal stagger-1">PRODUCT PARTNERSHIP TIERS</p>
+        </div>
+
+        <!-- ── Options ── -->
+        <section class="section" id="options">
+            <div class="tier-grid">
+                
+                <!-- OPTION 1 -->
+                <div class="tier-card reveal-left">
+                    <span class="tier-label mono-bold">Option 1</span>
+                    <span class="tier-price">$4,000</span>
+                    <h3>Dual Event Product Partner</h3>
+                    <p>Show up meaningfully at SXSW and be part of the conversation.</p>
+
+                    <div class="tier-subsection">
+                        <div class="tier-subsection-title">Event Integration</div>
+                        <ul>
+                            <li>Product featured across one event</li>
+                            <li class="sub-item">Chef Showcase or Michelin Watch Party</li>
+                            <li>Protein incorporated into 50–75 plates</li>
+                            <li>Organic verbal acknowledgment during event</li>
+                            <li>Natural visibility: plating, guests enjoying the food, in-room moments</li>
+                        </ul>
+                    </div>
+
+                    <div class="tier-subsection">
+                        <div class="tier-subsection-title">Content</div>
+                        <ul>
+                            <li>Jared Veldheer social coverage guaranteed</li>
+                            <li class="sub-item">1× Instagram Story set featuring Snake River Farms</li>
+                            <li>Organic content capture: food, crowd, atmosphere</li>
+                        </ul>
+                    </div>
+
+                    <div class="eyeball-meter">
+                        <div class="meter-label mono-bold">Estimated Reach</div>
+                        <div class="meter-bar-track">
+                            <div class="meter-bar-fill" style="--fill: 40%;"></div>
+                        </div>
+                        <div class="meter-stats">
+                            <div class="meter-stat">In-Room: <strong>75–100</strong></div>
+                            <div class="meter-stat">Social: <strong>150k–300k</strong></div>
+                            <div class="meter-stat">Total: <strong>200k–400k</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="best-for">
+                        <span class="best-for-label">Best For</span>
+                        Brands testing SXSW activation with strong culinary alignment and authentic exposure.
+                    </div>
+                </div>
+
+                <!-- OPTION 2 -->
+                <div class="tier-card featured reveal-right">
+                    <span class="tier-label mono-bold">Recommended</span>
+                    <span class="tier-price">$7,000</span>
+                    <h3>Signature Dual Event Product Partner</h3>
+                    <p>Maximum exposure across two nights. The strongest product-focused option.</p>
+
+                    <div class="tier-subsection">
+                        <div class="tier-subsection-title">Event Integration</div>
+                        <ul>
+                            <li>Product featured at both key events</li>
+                            <li class="sub-item">Chef Showcase — 8–16 course menu, 75–100 plates</li>
+                            <li class="sub-item">Michelin Watch Party — ~100 guests</li>
+                            <li>Multiple chefs cooking with Snake River Farms</li>
+                            <li>Priority placement within high-traffic courses</li>
+                            <li>Focus on peak SXSW energy nights (Thu/Fri)</li>
+                        </ul>
+                    </div>
+
+                    <div class="tier-subsection">
+                        <div class="tier-subsection-title">Content</div>
+                        <ul>
+                            <li>Jared Veldheer dedicated social content</li>
+                            <li class="sub-item">1× Instagram Reel (post-event) + 1× Story set (during)</li>
+                            <li>Snake River Farms featured explicitly</li>
+                            <li>Organic usage rights for brand channels</li>
+                            <li class="sub-item">Option for paid usage from photographer/videographer</li>
+                            <li>On-site content capture: food close-ups, guest reactions, chefs plating</li>
+                        </ul>
+                    </div>
+
+                    <div class="eyeball-meter">
+                        <div class="meter-label mono-bold">Estimated Reach</div>
+                        <div class="meter-bar-track">
+                            <div class="meter-bar-fill" style="--fill: 85%;"></div>
+                        </div>
+                        <div class="meter-stats">
+                            <div class="meter-stat">In-Room: <strong>175–200</strong></div>
+                            <div class="meter-stat">Social: <strong>300k–600k</strong></div>
+                            <div class="meter-stat">Total: <strong>450k–800k</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="best-for">
+                        <span class="best-for-label">Best For</span>
+                        Brands prioritizing eyeballs, content reuse, and cultural relevance during SXSW.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ── Comparison ── -->
+        <section class="section">
+            <h2 class="section-title reveal" style="text-align: center; margin-bottom: 2.5rem;">Side by <span class="serif-italic" style="color:#C41E3A !important;">Side</span></h2>
+
+            <div class="reveal stagger-2" style="overflow-x: auto;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Option 1</th>
+                            <th class="highlight-col">Option 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Investment</td>
+                            <td>$4,000</td>
+                            <td class="highlight-col">$7,000</td>
+                        </tr>
+                        <tr>
+                            <td>Events</td>
+                            <td>1</td>
+                            <td class="highlight-col">2</td>
+                        </tr>
+                        <tr>
+                            <td>Plates Served</td>
+                            <td>50–75</td>
+                            <td class="highlight-col">175–200</td>
+                        </tr>
+                        <tr>
+                            <td>Instagram Reel</td>
+                            <td>—</td>
+                            <td class="highlight-col">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Instagram Stories</td>
+                            <td>1 set</td>
+                            <td class="highlight-col">1 set</td>
+                        </tr>
+                        <tr>
+                            <td>Usage Rights</td>
+                            <td>—</td>
+                            <td class="highlight-col">Organic + Paid Option</td>
+                        </tr>
+                        <tr>
+                            <td>Total Est. Eyeballs</td>
+                            <td>200k–400k</td>
+                            <td class="highlight-col" style="color: var(--accent) !important;">450k–800k</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box reveal stagger-3">
+                <h3>Why This Is Underpriced</h3>
+                <p>For $4k–$7k, Snake River Farms gets chef-endorsed exposure in front of SXSW's most influential rooms, professional content assets, and up to 800k estimated impressions. Comparable SXSW activations start at $25k+ for a fraction of this reach and authenticity.</p>
+            </div>
+        </section>
+
+        <!-- ── Stats ── -->
+        <section class="section">
+            <h2 class="section-title reveal" style="text-align: center; margin-bottom: 2rem;">The <span class="serif-italic" style="color:#C41E3A !important;">Numbers</span></h2>
+            
+            <div class="stat-row">
+                <div class="stat-item reveal stagger-1">
+                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-label">NLC Chefs</span>
+                </div>
+                <div class="stat-item reveal stagger-2">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Total Guests</span>
+                </div>
+                <div class="stat-item reveal stagger-3">
+                    <span class="stat-number">8.5M+</span>
+                    <span class="stat-label">Combined Followers</span>
+                </div>
+                <div class="stat-item reveal stagger-4">
+                    <span class="stat-number">800k</span>
+                    <span class="stat-label">Max Est. Eyeballs</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Footer ── -->
+        <footer id="contact" class="reveal">
+            <p class="footer-label mono-bold">NEXT STEP</p>
+            <a href="mailto:sam@crowdworkmedia.com" class="footer-cta">Let's put Snake River Farms on the plate →</a>
+            
+            <div class="contact-block">
+                <a href="mailto:sam@crowdworkmedia.com" class="contact-item">sam@crowdworkmedia.com</a>
+                <a href="tel:+16163153975" class="contact-item">616-315-3975</a>
+            </div>
+            
+            <div class="footer-bottom">
+                <span>© 2026 SXSW CHEF</span>
+                <span>NLC × SXSW 2026 — SNAKE RIVER FARMS PROPOSAL</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.querySelectorAll('.meter-bar-fill').forEach(m => {
+                        setTimeout(() => m.classList.add('animate'), 400);
+                    });
+                    const num = entry.target.querySelector('.stat-number');
+                    if (num) num.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        // Tier card meter animation
+        document.querySelectorAll('.tier-card').forEach(el => {
+            const meterObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.meter-bar-fill').forEach(m => {
+                            setTimeout(() => m.classList.add('animate'), 600);
+                        });
+                        meterObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            meterObs.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(el, target, duration = 1200) {
+            const startTime = performance.now();
+            function update(currentTime) {
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(target * eased);
+                if (progress < 1) requestAnimationFrame(update);
+                else el.textContent = target;
+            }
+            requestAnimationFrame(update);
+        }
+
+        document.querySelectorAll('[data-target]').forEach(el => {
+            const cObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target, parseInt(entry.target.dataset.target));
+                        cObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            cObs.observe(el);
+        });
+
+        // Header shadow
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').style.boxShadow = 
+                window.scrollY > 10 ? '0 1px 12px rgba(0,0,0,0.06)' : 'none';
+        }, { passive: true });
+    </script>
+
+</body>
+</html>
